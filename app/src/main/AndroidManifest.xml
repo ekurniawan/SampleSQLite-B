@@ -12,7 +12,7 @@
         <activity android:name=".MainActivity">
 
         </activity>
-        <activity android:name=".AddWishActivity" />
+        <activity android:name=".AddWishActivity" android:label="Add Wish" />
         <activity android:name=".ListOfWishActivity" android:label="Daftar Wish">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

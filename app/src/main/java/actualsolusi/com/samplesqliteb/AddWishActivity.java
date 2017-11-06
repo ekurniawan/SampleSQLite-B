@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import data.DatabaseHandler;
 import models.MyWish;
@@ -13,6 +14,10 @@ public class AddWishActivity extends AppCompatActivity {
     private EditText etTitle,etContent;
     private Button btnAddWish;
     private DatabaseHandler db;
+
+    public AddWishActivity(){
+        db = new DatabaseHandler(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +34,18 @@ public class AddWishActivity extends AppCompatActivity {
                 MyWish wish = new MyWish();
                 wish.setTitle(etTitle.getText().toString());
                 wish.setContent(etContent.getText().toString());
-                db.AddWish(wish);
-                db.close();
+                try{
+                    db.AddWish(wish);
+                    Toast.makeText(AddWishActivity.this,"Tambah data berhasil !",
+                            Toast.LENGTH_SHORT).show();
+                    finish();
+                }catch (Exception ex){
+                    Toast.makeText(AddWishActivity.this,
+                            "Error "+ex.getMessage().toString(),Toast.LENGTH_LONG).show();
+                }
+                finally {
+                    db.close();
+                }
             }
         });
     }

@@ -37,5 +37,7 @@ public class ListOfWishActivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rvWish.setLayoutManager(llm);
+
+        RefreshDataWish();
     }
 }

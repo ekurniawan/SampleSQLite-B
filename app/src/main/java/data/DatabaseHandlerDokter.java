@@ -42,5 +42,23 @@ public class DatabaseHandlerDokter extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void DeletDokter(String Nik){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("doktertable","Nik=?",
+                new String[]{Nik});
+        db.close();
+    }
+
+    public void UpdateDokter(Dokter dokter){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("Nik",dokter.getNik());
+        values.put("Nama",dokter.getNama());
+        values.put("Alamat",dokter.getAlamat());
+        values.put("Spesialisasi",dokter.getSpesialisasi());
+        db.update("doktertable",values,"Nik=?",
+                new String[]{dokter.getNik()});
+        db.close();
+    }
 
 }

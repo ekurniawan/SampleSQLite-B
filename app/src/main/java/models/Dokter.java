@@ -5,17 +5,17 @@ package models;
  */
 
 public class Dokter {
-    private String Nim;
+    private String Nik;
     private String Nama;
     private String Alamat;
     private String Spesialisasi;
 
-    public String getNim() {
-        return Nim;
+    public String getNik() {
+        return Nik;
     }
 
-    public void setNim(String nim) {
-        Nim = nim;
+    public void setNik(String nik) {
+        Nik = nik;
     }
 
     public String getNama() {

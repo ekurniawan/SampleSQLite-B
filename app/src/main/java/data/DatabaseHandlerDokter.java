@@ -30,6 +30,7 @@ public class DatabaseHandlerDokter extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
+    //menambahkan add dokter
     public void AddDokter(Dokter dokter){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();

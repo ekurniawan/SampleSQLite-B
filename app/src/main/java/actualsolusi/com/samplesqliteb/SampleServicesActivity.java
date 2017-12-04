@@ -29,7 +29,6 @@ public class SampleServicesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 LoadContent();
-
             }
         });
     }

@@ -66,4 +66,19 @@ public final class KategoriServices {
 
         return response.code();
     }
+
+    public static int UpdateKategori(Kategori kategori) throws JSONException,IOException{
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(SERVICE_URL+"api/Kategori").newBuilder();
+        String url = urlBuilder.build().toString();
+        JSONObject editKategori = new JSONObject();
+        editKategori.put("NamaKategori",kategori.getNamaKategori());
+        editKategori.put("KategoriID",kategori.getKategoriID());
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json"),
+                editKategori.toString());
+        Request request = new Request.Builder().url(url).put(body).build();
+        Response response = _client.newCall(request).execute();
+
+        return response.code();
+    }
 }

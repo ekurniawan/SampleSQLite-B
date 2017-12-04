@@ -18,7 +18,7 @@ import models.Kategori;
 import services.KategoriServices;
 
 public class SampleServicesActivity extends AppCompatActivity {
-    private Button btnGetData,btnTambah;
+    private Button btnGetData,btnTambah,btnUpdate;
     private EditText etKategoriID;
     private EditText etNamaKategori;
     private List<Kategori> listKategori;
@@ -38,6 +38,7 @@ public class SampleServicesActivity extends AppCompatActivity {
         });
 
         etNamaKategori = (EditText)findViewById(R.id.etNamaKategori);
+        etKategoriID = (EditText)findViewById(R.id.etKategoriID);
         btnTambah = (Button)findViewById(R.id.btnTambah);
 
         btnTambah.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +47,45 @@ public class SampleServicesActivity extends AppCompatActivity {
                 TambahData();
             }
         });
+
+        btnUpdate = (Button)findViewById(R.id.btnUpdate);
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UpdateData();
+            }
+        });
+    }
+
+    private void UpdateData(){
+        new AsyncTask<Void,Void,Void>(){
+            private Kategori editKategori;
+
+            @Override
+            protected void onPreExecute() {
+                editKategori = new Kategori();
+                editKategori.setNamaKategori(etNamaKategori.getText().toString());
+                editKategori.setKategoriID(Integer.valueOf(etKategoriID.getText().toString()));
+            }
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                try {
+                    KategoriServices.UpdateKategori(editKategori);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                Toast.makeText(getApplicationContext(),"Update data berhasil !",
+                        Toast.LENGTH_LONG).show();
+            }
+        }.execute();
     }
 
     private void TambahData(){
